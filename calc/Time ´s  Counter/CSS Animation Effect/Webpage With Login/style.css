@@ -1,0 +1,306 @@
+
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap');
+  /*Importei a fonte do google fonts, a fonte em questão é poppins */
+  *{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+  }
+  /* Atribui como classe universal, margin:0; padding:0; box-sizing: border-box; font-family: 'Poppins', sans-serif;*/
+  body{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('Under\ the\ Sea.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+
+  }
+/* No body utilizei este parametros, display (modo de visualização), flex; justify-content (conteudo justificado), atribui como centro, alinhamento dos items, centro tambem com uma altura de 100% view heigth, para uma altura minima, background, peguei de uma imagem do yandex, e coloquei pra ela não se repetir, com o seu tamanho cobrindo a tela inteira (cover), e sua posição ao centro */
+
+  header {
+position:fixed;
+  top:0;
+  left:0;
+  width: 100%;
+  padding: 15px 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 99;
+  }
+  /* No header  eu utilizei a posição fixa, dando destaque para o conteudo justificado onde adicionei espaço entre os itens no header, alinhando eles ao centro, com um z-index:99, ele garante que a propriedade não serão empilhadas neste caso*/
+  .logo{
+    font-size: 2em;
+    color:#0c0808;
+    user-select: none;
+    font-weight: 650;
+  }
+  /* Aqui eu estilizei a logo, que veio de uma tag h2. dou destaque ao user -select, ou seja caso o navegador queira slecionar a logo, como ela esta como h2, por isso esta em none*/
+
+  .navigation a{
+position: relative;
+font-size: 1.1em;
+color:#0c0808;
+text-decoration:none;
+font-weight:600;
+margin-left: 40px;
+
+  }
+  /* Aqui na classe navigation da tag nav eu estilizei a tag ancoras que estão na classe navigation, com a posição relativa, ou seja podendo mudar conforme a altura e largura do dispositivo*/
+  
+  .navigation a::after{
+    content:" ";
+    left:0;
+    bottom: -6px;
+    position:absolute;
+    width:100%;
+    height:3px;
+    background:rgb(1, 1, 114);
+    border-radius: 5px;
+    transform-origin:right;
+    transform: scaleX(0);
+    transition: transform .5s;
+  }
+  /* Aqui eu adicionei um pseudo elemento , na classe navigation para as tag ancoras, essa propriedade junto com a pseudoclasse hover, vai fazer toda marcação embaixo das tag ancoras*/
+
+  .navigation a:hover::after{
+transform-origin:left;
+    transform: scaleX(1);
+  }
+  /* Aqui eu adicionei a pseudoclasse hover ao pseudoelemento after, dando destaque para o comando transform-origin, em que eu selecionei para a esquerda, e transform: scaleX(1), no qual eu apliquei aos elementos indice 1 para escala x, em uma escala bi dimensional*/
+
+.navigation .btnLogin-popup{
+width: 130px;
+height: 50px;
+background:transparent;
+border:2px solid #ffffff;
+outline: none;
+border-radius: 6px;
+cursor:pointer;
+font-size: 1.1em;
+color:#0c0808;
+font-weight: 600;
+margin-left:40px;
+transition: 0.5s;
+  }
+
+  /* Aqui eu estilizei o botão que esta dentro da classe navigation , na tag nav, destaque para os comandos outline, que retira linha em cima da borda; border-radius que atribui uma bordar circular; cursor:pointer, que permite interação com o botão por meio de um cursor ponteiro, e um transition: 0.5s, que permite com que as modificaçoes surgem em 0.5s, tempo este que o cursor repousa no botão login*/
+
+  .navigation .btnLogin-popup:hover{
+    background:rgb(122, 170, 243);
+    color:#0c0808;
+
+
+
+  }
+  /* Aqui eu atribui uma pseudo classe ao botão criando efeito de transição com o hover*/
+  
+  .wrapper{
+    position: relative;
+    width:400px;
+    height: 440px;
+    background:transparent;
+    border: 2px solid rgb(255,255,255,.5);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0,0,0,.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:rgb(0, 0, 0);
+    overflow: hidden;
+    transform: scale(0);
+    transition:transform .5s ease, height .2s ease;
+  }
+  /* Na classe wrapper, atribui uma posição relative, relativa a pagina, com um fundo transparente, dando destque ao backdrop-filter: blur(20px), que remete ao nivel de opacidade da classe wrapper, alem do comando box-shadow, que remete a sombra por fora da caixa; display: flex, ou seja a maneira como essa caixa vai aparecer com seus elementos, podendo ser tanto inline quanto block. Overflow: Este comando permite que as bordas que estão entre os elementos fiquem ocultas. Transform, este comando permite voce modificar os elementos de dentro da classe, e trasition, aplicado ao transform com um tempo de .5s, ease, (modo)*/
+
+  .wrapper.active-popup{
+    transform: scale(1);
+  }
+  .wrapper.active{
+    height: 500px;
+  }
+  /* As duas classes, surgem quando eu clico na caixa wrapper que esta dentro de botão login, essa classe surgiu quando a classe wrapper foi modificada no scripto.js*/
+  
+.wrapper .form-box{
+    width: 100%;
+    padding: 40px;
+
+  }
+  /*Estelizando a classe for-box dentro de wrapper */
+
+  .wrapper.form-box-login{
+   transition: transform .18s ease;
+   transform: translateX(0);
+  }
+  /*Adicionei trasnsição junto com trasnform com o tempo de .18s, deixando como trasnlateX (0)*/
+  .wrapper.active .form-box-login {
+transition: none;
+transform: translateX(-400px);
+  }
+  /* nas classe form -box login, rotacionei ao valor de -400 o botão do login dentro do botão login*/
+
+  .wrapper .form-box-register{
+    position:absolute;
+    transition:none;
+    transform:translateX(400px);
+   }
+   .wrapper.active .form-box-register{
+transition:transform .18s ease;
+transform: translateX(0);
+   }
+   /* Ja para o register deixei na posição de 400px, oposto ao botão login*/
+  .wrapper .icon-closer{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 45px;
+    height: 45px;
+    background: #23377a;
+    font-size: 2em;
+    color:aliceblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 20px;
+    cursor: pointer;
+    z-index: 1;
+
+  }
+  /* Estilizei o botão de fechar o wrapper, ja programado no js, com o z-index 1*/
+  .form-box h2{
+    font-size: 2em;
+    color:black;
+    text-align: center;
+
+  }
+  /* Estilizei o titulo de form-box*/
+  
+  .input-box{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    border-bottom: 2px solid rgb(165, 194, 207);
+    margin:30px 0;
+  }
+  /* Estilizando a caixa de entrada de dados*/
+
+.input-box label {
+position: absolute;
+top: 55%;
+left: 5px;
+transform:translateY(-50%);
+font-size: 1em;
+color:black;
+font-weight: 850;
+pointer-events: none;
+transition: .5s;
+
+}
+/* Estilizando os labels das caixas de entradas ou seja a acessibilidade*/
+
+.input-box input:focus~label,
+.input-box input:valid~label {
+  top: -5px;
+}
+/* Estes dois comandos remete que na classe input-box, tanto para input que tenha dados de foco como acessibilidade quanto para entra de daods de validação como os input propriamente dito */
+
+.input-box input{
+    width: 100%;
+    height: 100%;
+    background:transparent;
+    border:none;
+    outline:none;
+    font-size:1.1em;
+    color: #0c0808;
+    font-weight: 600;
+    padding: 0 35px 0 5px;
+}
+/* Aqui eu estou configurando  os input da classe input-box*/
+.input-box .icon{
+    position: absolute;
+    right: 8px;
+    font-size: 1.1em;
+    color: aliceblue;
+    line-height: 57px;
+
+
+}
+/* Aqui eu estou configurando  o icone da classe input-box*/
+.remember-forgot{
+    font-size:.9em;
+    color:#0c0808;
+    font-weight: 700;
+    margin:-15px 0 15px;
+    display: flex;
+    justify-content: space-between;
+}
+/* Aqui eu estilizei a tag ancora do "esqueceu sua senha"*/
+#forget{
+  margin-left: 8px;
+} 
+/* Aqui adicionei uma margem de 8px, entre o elemnto do checkbox e o elemento "esqueceu sua senha"*/
+.remember-forgot label input{
+    accent-color: rgb(2, 76, 95);
+    margin-right: 3px;
+  
+   
+
+}
+/* Aqui eu estilizei o label do esquecia a senha*/
+.remember-forgot a{
+     color:#0c0808;
+     text-decoration: none;
+     
+     
+
+}
+/* Aqui eu estilizei a tag ancora*/
+.remember-forgot a:hover{
+    text-decoration: underline;
+   
+}
+/* Adicionei hover a tag ancora*/
+.btn{
+    width:100%;
+    height:40px;
+    background:#173d62;
+    border: none;
+    outline:none;
+    font-size: 1em;
+    font-weight: 850;
+    font-style:#0c0808;
+    cursor:pointer;
+    border-radius:6px;
+
+}
+/* Estilizei o botão de login e registro*/
+.login-register{
+    font-size: .9em;
+    color:#0c0808;
+    text-align: center;
+    font-weight: 650;
+    margin: 25px 0 10px;
+
+
+}
+.login-register p a{
+    color:#0c0808;
+    text-decoration: none;
+    font-weight: 700;
+
+}
+.login-register p a:hover{
+    text-decoration: underline;
+
+}
+/* Aqui eu estilizei a classe login-register, estilizei a tag p, embaixo da caixa e adicionei um hover abaixo do texto do tipo text-decoration*/
+
+
+
+    
+  
+
